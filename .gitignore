@@ -43,3 +43,7 @@ yarn-error.log*
 /localStorage
 
 test-results
+next-env.d.ts
+next-env.d.ts
+yarn.lock
+next-env.d.ts

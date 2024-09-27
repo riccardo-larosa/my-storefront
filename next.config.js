@@ -15,6 +15,11 @@ const nextConfig = {
         protocol: "https",
         hostname: "**.cm.elasticpath.com",
       },
+      {
+        protocol: 'https',
+        hostname: 'assets.adidas.com',
+
+      },
     ],
   },
   i18n: {
