@@ -35,12 +35,11 @@ async function getToken() {
 export async function GET(request: NextRequest) {
 
     const params = request.nextUrl.searchParams;
-    const pageName = params.get('pageName');
+    const content_id = params.get('content_id');
     const token = await getToken();
     const base_url = process.env.API_BASE_URL;
-    console.log(token);
-    const url_str = `${base_url}/v2/extensions/store-content?filter=like(content_id,${pageName})`;
-    console.log(`url_str: ${url_str}`);
+    //console.log(token);
+    const url_str = `${base_url}/v2/extensions/store-content?filter=like(content_id,${content_id})`;
     const response = await fetch(
         url_str,
         {
@@ -57,17 +56,7 @@ export async function GET(request: NextRequest) {
         throw new Error(`Error: ${response.status}`);
     }
     const data = await response.json();
-    console.log(data);
-    // Filter the data based on pageName and sectionName
-    //const pageContent = data.entries.find(entry => entry.pageName === pageName && entry.sectionName === sectionName);
     // if data.data is not empty, then return the first entry   
-    if (data.data.length > 0) {
-        const pageContent = data.data[0].html;
-        return Response.json(pageContent);
-    } else {
-        return Response.json(null);
-    }
-
-
-    //return Response.json(pageContent)
+    const pageContent = data.data.length > 0 ? data.data[0] : null;
+    return Response.json(pageContent);
 }

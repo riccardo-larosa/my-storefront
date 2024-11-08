@@ -1,8 +1,8 @@
-import Blurb from "../../../components/shared/blurb";
+// import Blurb from "../../../components/shared/blurb";
 import DynamicContent, { fetchContent } from "../../../components/content/DynamicContent";
 
 export default async function About() {
-  //return <Blurb title="About" />;
-  const pageContent = await fetchContent("about_us", "about");
-  return <DynamicContent  pageContent={pageContent} />;
+  
+  //const pageContent = await fetchContent("this_test", "html");
+  return <DynamicContent  content_id="this_test" format="html" />;
 }
