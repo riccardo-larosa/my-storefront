@@ -40,6 +40,7 @@ export async function GET(request: NextRequest) {
     const base_url = process.env.API_BASE_URL;
     //console.log(token);
     const url_str = `${base_url}/v2/extensions/store-content?filter=like(content_id,${content_id})`;
+    console.log(`url_str: ${url_str}`);
     const response = await fetch(
         url_str,
         {

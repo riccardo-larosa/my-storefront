@@ -1,7 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 import { ComponentMap } from './Components';
 
-const DynamicContent = async ({  pageContent, format }: {  pageContent: string, format: string }) => {
+const DynamicContent = ({  pageContent, format }: {  pageContent: string, format: string }) => {
   //return pageContent;
   if (format === "html") {
     return (

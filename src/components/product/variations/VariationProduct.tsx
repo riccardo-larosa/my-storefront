@@ -11,6 +11,8 @@ import ProductSummary from "../ProductSummary";
 import ProductDetails from "../ProductDetails";
 import ProductExtensions from "../ProductExtensions";
 import { StatusButton } from "../../button/StatusButton";
+import DynamicContent from "../../content/DynamicContent";
+import { useContent } from "../../content/DynamicContent";
 
 export const VariationProductDetail = ({
   variationProduct,
@@ -30,6 +32,14 @@ export function VariationProductContainer(): JSX.Element {
 
   const { response, main_image, otherImages } = product;
   const { extensions } = response.attributes;
+  console.log(`response.id: ${response.id}`);
+  let pageName = "";
+  if (response.id === "8002249a-08c3-4578-974d-5e1d9495c102") {
+    pageName = "tiro";
+  }
+  const {data: pageContent} = useContent(pageName, "react");
+  console.log(`data: ${pageContent}`);
+
   return (
     <div>
       <div className="flex flex-col lg:flex-row gap-8 lg:gap-10">
@@ -53,6 +63,7 @@ export function VariationProductContainer(): JSX.Element {
               ADD TO CART
             </StatusButton>
           </div>
+          <div>{pageContent && <DynamicContent pageContent={pageContent} format='react' />}</div>
         </div>
       </div>
     </div>

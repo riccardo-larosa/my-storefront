@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import HitComponent from "./Hit";
 import { useProducts } from "./ProductsProvider";
-import DynamicContent, { fetchContent } from '../content/DynamicContent';
+import DynamicContent, { useContent } from '../content/DynamicContent';
+import DisplayContent from '../content/DisplayContent';
 import { usePathname } from "next/navigation";
 import NoResults from './NoResults';
 
@@ -10,23 +11,9 @@ export default function Hits(): JSX.Element {
   const { page } = useProducts();
   const pathname = usePathname().replace(/\//g, "_");
   console.log(`pathname: ${pathname}`);
-  
-  const [pageContent, setPageContent] = useState<string | null>(null);
 
-  useEffect(() => {
-    const loadContent = async () => {
-      try {
-        const content = await fetchContent(pathname, "react");
-        setPageContent(content);
-      } catch (error) {
-        console.error("Error fetching page content:", error);
-      }
-    };
-
-    loadContent();
-  }, [pathname]);
-
-  console.log(`pageContent: ${pageContent}`);
+  const {data: pageContent} = useContent(pathname, "react");
+  console.log(`data: ${pageContent}`);
 
   if (!page) {
     return <NoResults displayIcon={false} />;
