@@ -32,7 +32,7 @@ export function VariationProductContainer(): JSX.Element {
 
   const { response, main_image, otherImages } = product;
   const { extensions } = response.attributes;
-  console.log(`response.id: ${response.id}`);
+  //console.log(`response.id: ${response.id}`);
   let pageName = "";
   if (response.id === "8002249a-08c3-4578-974d-5e1d9495c102") {
     pageName = "tiro";
