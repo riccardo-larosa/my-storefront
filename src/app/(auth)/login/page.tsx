@@ -8,9 +8,9 @@ import { LoginForm } from "./LoginForm";
 export default function Login({
   searchParams,
 }: {
-  searchParams: { returnUrl?: string };
+  searchParams: { returnUrl?: string; message?: string };
 }) {
-  const { returnUrl } = searchParams;
+  const { returnUrl, message } = searchParams;
 
   const cookieStore = cookies();
 
@@ -21,6 +21,11 @@ export default function Login({
   return (
     <>
       <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
+        {message && (
+          <div className="sm:mx-auto sm:w-full sm:max-w-sm mb-4">
+            <p className="text-center text-green-600">{decodeURIComponent(message)}</p>
+          </div>
+        )}
         <div className="sm:mx-auto sm:w-full sm:max-w-sm">
           <Link href="/">
             <EpLogo className="h-10 w-auto mx-auto" />
